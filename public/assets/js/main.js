@@ -1,5 +1,6 @@
-var url= "http://localhost:3000/registerNumber";
-
+var api = {
+	url: "http://localhost:3000/api/registerNumber"
+}
 
 /* VERSION UNO :()
 function obtenerInfo() {
@@ -17,7 +18,7 @@ function verNumeros(numeros){
 function pedirInfo(url) {
 	return new Promise(function (resolve, reject) {
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET", url);
+		ajax.open("POST", url);
 		ajax.send();
 		ajax.onreadystatechange = function () {
 			if (ajax.readyState == 4) {
@@ -27,8 +28,8 @@ function pedirInfo(url) {
 	})
 }
 
-/*pedirInfo(aqui va mi json no se que aqui )
-.then.... */
+pedirInfo(api.url)
+.then(function(respuestaDatos){console.log(respuestaDatos)}); 
 
 
 	
