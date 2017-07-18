@@ -3,7 +3,9 @@ const bodyParser      = require('body-parser'); //Parsea el post para obtener ob
 const levelup         = require('levelup'); // Base de datos
 const morgan          = require('morgan'); // Sistema de logging (muestra en la cosa los request)
 const morganjson      = require('morgan-json');
-const apiUsers        = require('./api/users'); //Endpoints relacionados al User model
+const apiUsers        = require('./api/users');
+const path            = require("path"); 
+//Endpoints relacionados al User model
 
 const app = express();
 const db  = levelup('./api/users', {valueEncoding: 'json'});
@@ -16,14 +18,13 @@ const format = morganjson({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use("/",express.static('public'));
 app.use(morgan(format));
+/*app.use("/static",express.static(path.join(__dirname + "/assets")));*/
+app.use("/static",express.static(path.join(__dirname + "/node_modules")));
 
 let router = express.Router();
 
-router.get('/', (req, res) => {
-  res.json({ name: 'yape-api',version: "0.0.1"});
-});
 
 app.use('/api',apiUsers(router,db));
 

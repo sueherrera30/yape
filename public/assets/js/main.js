@@ -1,0 +1,1 @@
+$(".carousel.carousel-slider").carousel({fullWidth:!0});
