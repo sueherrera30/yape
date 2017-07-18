@@ -1,5 +1,6 @@
 .carrusel {
- padding-top:20%;
+ padding-top:10%;
+	height: 1000px;
 
 
 }
@@ -13,8 +14,4 @@ height:100%;
 .contenedorImg__img{
   width:60%;
 height: 80%;
-}
-
-carousel-fixed-item{
-	
 }
