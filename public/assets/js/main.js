@@ -3,20 +3,42 @@
  	$('.carousel.carousel-slider').carousel({
  		fullWidth: true
  	});
-	 activarBoton();
 	 
  });
 
  /*validacion de datos*/
- var numeroIngresado = $('#icon_telephone').val();
+ var numeroIngresado = $('#entrada');
+ var formulario = $("#formulario");
  var botonContinuar = $('#btn-continuar');
- var palomita = $('#palomita');
+ var palomita = $('#test5');
 
-palomita.addEventListener("click",activarBoton);
+console.log(numeroIngresado) 
+console.log(formulario);
+console.log(botonContinuar);
+console.log(palomita);
 
-function activarBoton(){
-	$botonContinuar.attr("disabled", true);
+numeroIngresado.keyup(validarNumero);
+
+function validarNumero(e){
+	e.preventDefault();
+	var longitud = numeroIngresado.val().length;
+	if(longitud >= 10){
+		/*alert("hola");*/
+	botonContinuar.removeClass("disabled");
+	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  var url = "http://localhost:3000/api/registerNumber";
