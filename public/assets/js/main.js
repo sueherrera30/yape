@@ -11,14 +11,12 @@ $(document).ready(function () {
 
 /*validacion de datos*/
 var numeroIngresado = $('#entrada');
-var formulario = $("#formulario");
 var botonContinuar = $('#btn-continuar');
 var palomita = $('#test5');
 var telefonoObtenido = 0;
 var terminos = 0;
 
 console.log(numeroIngresado)
-console.log(formulario);
 console.log(botonContinuar);
 console.log(palomita);
 

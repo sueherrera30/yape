@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registro</title>
+	<title>Formulario</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./static/materialize-css/dist/css/materialize.min.css">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -14,46 +14,66 @@
 	<section class="container">
 		<div class="row">
 			<div class="contenedorImgRegistro center col s6 offset-s3 m6 offset-m3">
-				<img class="contenedorImgRegistro--img" src="assets/img/icons/phone.png" alt="logo">
+				<img class="contenedorImgRegistro--img" src="assets/img/icons/lockone.png" alt="logo">
 			</div>
 		</div>
 
 		<div class="row">
 			<div class=" center col s12 m6 offset-m3">
-				<h5>Para comenzar validamos tu numero</h5>
+				<h5>Crea tu usuario Yape</h5>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col s12 m6 offset-m3 center">
-				<p class="grey-text">Paga a quien quieras desde donde quieras,sin usar efectivo</p>
+				<p class="grey-text">Ingresa un nombre, email y clave de usuario</p>
 			</div>
 		</div>
-		
-			<div class="row">
-				<div class="input-field col s12 m6 offset-m3 center">
-
-					<input id="entrada" type="number" class="validate">
-					<label for="icon_telephone"><i class="material-icons">phonelink_ring</i>Telephone +55 </label> 
-				</div>
-			</div>
-		
 
 		<div class="row">
-			 <p class="col s12 m6 offset-m3 center">
-      <input type="checkbox" id="test5"/>
-				 <label for="test5">Acepto los<span class="blue-text"> terminos y condiciones</span> </label>
-    </p>
+			<div class="input-field col s12 m6 offset-m3 center">
+
+				<input id="entrada" type="number" class="validate">
+				<label for=""><i class="material-icons">perm_identity</i><span >Nombre</span></label>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="row">
+			<div class="input-field col s12 m6 offset-m3 center">
+
+				<input id="entrada" type="number" class="validate">
+				<label for="icon_telephone"><i class="material-icons">email</i>correo@ejemplo.com </label>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="input-field col s12 m6 offset-m3 center">
+
+				<input id="entrada" type="number" class="validate">
+				<label for=""><i class="material-icons">lock_outline</i><span >Ingresa clave de 6 numeros</span></label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col s12 m6 offset-m3 center">
+				<p class="grey-text">
+					Cuida esta clave como oro, será tu acceso a Yape</p>
+			</div>
 		</div>
 
 		<div class="row">
 			<a href="codigo.html" class="btn disabled col s6 offset-s3 m6 offset-m3" id="btn-continuar">Continuar</a>
 		</div>
+
 	</section>
 
 
 	<script src="./static/jquery/dist/jquery.min.js"></script>
 
-	<!--<script src="./static/materialize-css/dist/js/materialize.min.js"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>
