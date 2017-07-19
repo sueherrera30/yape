@@ -5,6 +5,9 @@ div .carousel {
 .img--carousel {
   width: 300px; }
 
+.carousel .indicators .indicator-item {
+  background-color: #868691; }
+
 .carousel .indicators .indicator-item.active {
   background-color: #bf2c2c; }
 

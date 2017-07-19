@@ -5,6 +5,8 @@ $(document).ready(function () {
 		fullWidth: true
 	});
 });
+
+
 /*--------------------------------------------------*/
 
 /*validacion de datos*/
@@ -19,33 +21,43 @@ console.log(botonContinuar);
 console.log(palomita);
 
 numeroIngresado.keyup(validarNumero);
-palomita.change(validarNumero);	
+palomita.change(validarNumero);
 
 function validarNumero(e) {
 	e.preventDefault();
 	var longitud = numeroIngresado.val().length;
-	if (longitud >= 10 && palomita.is(":checked")){
+	if (longitud >= 10 && palomita.is(":checked")) {
 		botonContinuar.removeClass("disabled");
+		/*(":checked")   aun no se por que necesita los dos puntos :s :es como un selector o seudoclase*/
 	}
-
-	/*POSIBLE VALIDACIÓN JUNTO CON PALOMITA
-	UNO:  if(longitud >= 10 && palomita.attr("checked")=="checked")????  
-	
-	DOS:  if (longitud >= 10 && palomita.is(":checked")   aun no se por que necesita los dos puntos :s*/
 };
 /*-----------------------------------------------------*/
 /*api*/
-var url = "http://localhost:3000/api/registerNumber";
-    var valorNumIngresado = numeroIngresado.val();
-    /*localStorage.setItem("phone",valorNumIngresado);*/
-function obtenerInformacion () {
-	$.post(url, {
-		/*phone:localStorage.getItem("phone"),*/
-		phone:0987654321,
+/*primera peticion*/
+var miApi = {
+	urlRegistro: "http://localhost:3000/api/registerNumber",
+	urlCodigo: "http://localhost:3000/api//resendCode"
+}
+
+function obtenerInformacion() {
+	$.post(miApi.urlRegistro, {
+		phone: numeroIngresado.val(),
 		terms: true
-	}).then(function(respuesta){console.log(respuesta)}).catch(function(respuesta){console.log(respuesta)})
+	}).then(function (respuesta) {
+		console.log(respuesta)
+	}).catch(function (error) {
+		console.log(respuesta)
+	})
 };
 
-botonContinuar.click(obtenerInformacion);  
-
+botonContinuar.click(obtenerCodigo);
+/*segunda petición generar codigo*/
+ function obtenerCodigo(){
+	 $.post(miApi.urlCodigo,
+			{userId:numeroIngresado.val()}).then(function (respuesta) {
+		console.log(respuesta)
+	}).catch(function (error) {
+		console.log(respuesta)})
+ };
+/*obtenerCodigo();*/
 
