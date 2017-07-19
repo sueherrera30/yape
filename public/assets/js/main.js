@@ -1,40 +1,34 @@
-var api = {
-	url: "http://localhost:3000/api/registerNumber"
-}
+ $(document).ready(function () {
+ 	/*carousel*/
+ 	$('.carousel.carousel-slider').carousel({
+ 		fullWidth: true
+ 	});
+	 activarBoton();
+	 
+ });
 
-/* VERSION UNO :()
-function obtenerInfo() {
-	$.getJSON(url,function(numero){		
-		numero.forEach(verNumeros);
-	});
-}
+ /*validacion de datos*/
+ var numeroIngresado = $('#icon_telephone').val();
+ var botonContinuar = $('#btn-continuar');
+ var palomita = $('#palomita');
 
-function verNumeros(numeros){
-	console.log(numeros)
-}
-*/
+palomita.addEventListener("click",activarBoton);
 
-/*VERSION DOS CON XMLHTTPrequest y promise*/
-function pedirInfo(url) {
-	return new Promise(function (resolve, reject) {
-		var ajax = new XMLHttpRequest();
-		ajax.open("POST", url);
-		ajax.send();
-		ajax.onreadystatechange = function () {
-			if (ajax.readyState == 4) {
-				resolve(JSON.parse(ajax.responseText));
-			}
-		}
+function activarBoton(){
+	$botonContinuar.attr("disabled", true);
+};
+
+
+ var url = "http://localhost:3000/api/registerNumber";
+
+var obtenerInformacion = function(){
+	$.post(url,{phone:0123456789,terms:true},function(datosObtenidos){
+		console.log(datosObtenidos);
 	})
-}
-
-pedirInfo(api.url)
-.then(function(respuestaDatos){console.log(respuestaDatos)}); 
-
-
+};
+obtenerInformacion();
 	
 
 
 
-/*carousel*/
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+
