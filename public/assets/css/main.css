@@ -1,16 +1,19 @@
+div .carousel {
+  margin-top: 10%;
+  min-height: 400px; }
+
 .img--carousel {
   width: 300px; }
 
-div .carousel {
-  margin-top: 10%;
-  min-height: 400px;
-  /* padding-top:40%;*/ }
-
-/*.btn{
-	height: 8%;
-	font-size:3vw; 
-}*/
 .carousel .indicators .indicator-item.active {
   background-color: #bf2c2c; }
+
+.contenedorImgRegistro {
+  height: 100%;
+  width: 100%; }
+  .contenedorImgRegistro--img {
+    height: 60%;
+    width: 60%;
+    margin-top: 20%; }
 
 /*# sourceMappingURL=main.css.map */

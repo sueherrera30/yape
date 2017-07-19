@@ -1,0 +1,24 @@
+	div .carousel {
+	margin-top: 10%;
+	min-height: 400px;
+}
+
+.img--carousel {
+	width: 300px;
+}
+
+.carousel .indicators .indicator-item.active {
+	background-color: #bf2c2c;
+}
+
+.contenedorImgRegistro {
+	height: 100%;
+	width: 100%;
+	&--img {
+		height: 60%;
+		width: 60%;
+		margin-top:20%;
+	}
+}
+
+
