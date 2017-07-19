@@ -14,6 +14,8 @@ var numeroIngresado = $('#entrada');
 var formulario = $("#formulario");
 var botonContinuar = $('#btn-continuar');
 var palomita = $('#test5');
+var telefonoObtenido = 0;
+var terminos = 0;
 
 console.log(numeroIngresado)
 console.log(formulario);
@@ -26,9 +28,15 @@ palomita.change(validarNumero);
 function validarNumero(e) {
 	e.preventDefault();
 	var longitud = numeroIngresado.val().length;
-	if (longitud >= 10 && palomita.is(":checked")) {
+	
+	if (longitud == 10 && palomita.is(":checked")) {
+		/*terminos = true;*/
 		botonContinuar.removeClass("disabled");
 		/*(":checked")   aun no se por que necesita los dos puntos :s :es como un selector o seudoclase*/
+	}
+	else{
+		terminos = false;
+		return terminos;
 	}
 };
 /*-----------------------------------------------------*/
@@ -42,7 +50,7 @@ var miApi = {
 function obtenerInformacion() {
 	$.post(miApi.urlRegistro, {
 		phone: numeroIngresado.val(),
-		terms: true
+		terms: terminos
 	}).then(function (respuesta) {
 		console.log(respuesta)
 	}).catch(function (error) {
@@ -50,14 +58,24 @@ function obtenerInformacion() {
 	})
 };
 
-botonContinuar.click(obtenerCodigo);
-/*segunda petición generar codigo*/
- function obtenerCodigo(){
+botonContinuar.click(obtenerInformacion);
+
+
+
+
+ /*function obtenerCodigo(){
 	 $.post(miApi.urlCodigo,
 			{userId:numeroIngresado.val()}).then(function (respuesta) {
 		console.log(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)})
  };
-/*obtenerCodigo();*/
+obtenerCodigo();
+
+*/
+
+
+
+
+
 
