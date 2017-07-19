@@ -1,56 +1,51 @@
- $(document).ready(function () {
- 	/*carousel*/
- 	$('.carousel.carousel-slider').carousel({
- 		fullWidth: true
- 	});
-	 
- });
+/*funcionalidad de carousel*/
+$(document).ready(function () {
 
- /*validacion de datos*/
- var numeroIngresado = $('#entrada');
- var formulario = $("#formulario");
- var botonContinuar = $('#btn-continuar');
- var palomita = $('#test5');
+	$('.carousel.carousel-slider').carousel({
+		fullWidth: true
+	});
+});
+/*--------------------------------------------------*/
 
-console.log(numeroIngresado) 
+/*validacion de datos*/
+var numeroIngresado = $('#entrada');
+var formulario = $("#formulario");
+var botonContinuar = $('#btn-continuar');
+var palomita = $('#test5');
+
+console.log(numeroIngresado)
 console.log(formulario);
 console.log(botonContinuar);
 console.log(palomita);
 
 numeroIngresado.keyup(validarNumero);
+palomita.change(validarNumero);	
 
-function validarNumero(e){
+function validarNumero(e) {
 	e.preventDefault();
 	var longitud = numeroIngresado.val().length;
-	if(longitud >= 10){
-		/*alert("hola");*/
-	botonContinuar.removeClass("disabled");
+	if (longitud >= 10 && palomita.is(":checked")){
+		botonContinuar.removeClass("disabled");
 	}
-};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- var url = "http://localhost:3000/api/registerNumber";
-
-var obtenerInformacion = function(){
-	$.post(url,{phone:0123456789,terms:true},function(datosObtenidos){
-		console.log(datosObtenidos);
-	})
-};
-obtenerInformacion();
+	/*POSIBLE VALIDACIÓN JUNTO CON PALOMITA
+	UNO:  if(longitud >= 10 && palomita.attr("checked")=="checked")????  
 	
+	DOS:  if (longitud >= 10 && palomita.is(":checked")   aun no se por que necesita los dos puntos :s*/
+};
+/*-----------------------------------------------------*/
+/*api*/
+var url = "http://localhost:3000/api/registerNumber";
+    var valorNumIngresado = numeroIngresado.val();
+    /*localStorage.setItem("phone",valorNumIngresado);*/
+function obtenerInformacion () {
+	$.post(url, {
+		/*phone:localStorage.getItem("phone"),*/
+		phone:0987654321,
+		terms: true
+	}).then(function(respuesta){console.log(respuesta)}).catch(function(respuesta){console.log(respuesta)})
+};
 
-
+botonContinuar.click(obtenerInformacion);  
 
 
