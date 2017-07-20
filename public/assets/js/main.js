@@ -30,6 +30,7 @@ function validarNumero() {
 		telefonoObtenido = numeroIngresado.val();
 		botonContinuar.removeClass("disabled");
 };
+
 }
 /*-----------------------------------------------------*/
 /*api*/
@@ -42,10 +43,10 @@ var miApi = {
 function obtenerInformacion() {
 	$.post(miApi.urlRegistro, {
 		phone: telefonoObtenido,
-		terms: terminos
+		terms: terminos,
 	}).then(function (respuesta) {
 		 console.log(respuesta.data.code)
-		 almacenarInformacion(respuesta)
+		 obtenerInformacion(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
@@ -54,19 +55,31 @@ function obtenerInformacion() {
 
  
 
-function almacenarInformacion(){
+function almacenarInformacion(respuesta){
 	localStorage.setItem("phone",telefonoObtenido);
 	localStorage.setItem("terms",terminos);
-	localStorage.setItem("terms",terminos);
-	
+	localStorage.setItem("code",respuesta.data.code);
+}
+/*function obtenerInformacion(){
 	var telefonoLS = localStorage.getItem("phone");
     console.log(telefonoLS);
 	var terminosLS = localStorage.getItem("terms");
 	console.log(terminosLS);
-/*	imprimirNumero();*/
+	var codigoLS = localStorage.getItem("code");
+	console.log(codigoLS);
+	
+}*/
+
+function mostrarCodigo(respuesta){
+	var codigoLS = localStorage.getItem("code");
+	console.log(codigoLS);
+	obtenerInformacion(respuesta);
+	alert("Tu código es:" + " " + codigoLS )
 }
 
-botonContinuar.click(obtenerInformacion);
+
+botonContinuar.click(obtenerInformacion,mostrarCodigo);
+
 
 /*botonContinuar.click(imprimirNumero);*/
 
