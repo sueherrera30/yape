@@ -89,7 +89,10 @@ function validarCodigo() {
 	 var codigoLS = localStorage.getItem("code");
 	 var valorCodigoIngresado = numeroIngresado.val();	
 	 if(valorCodigoIngresado == codigoLS){
-	    console.log("por ahi vas");}
+	    location.href = "formulario.html";}
+	/*else{
+		setInterval()
+	}*/
 };
 
 
