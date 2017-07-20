@@ -6,17 +6,13 @@ $(document).ready(function () {
 	});
     imprimirNumero();
 });
-
-
 /*--------------------------------------------------*/
-
 /*validacion de datos*/
 var numeroIngresado = $('#entrada');
 var botonContinuar = $('#btn-continuar');
 var palomita = $('#test5');
 var telefonoObtenido;
 var terminos;
-
 
 numeroIngresado.keyup(validarNumero);
 palomita.change(validarNumero);
@@ -29,7 +25,6 @@ function validarNumero() {
 		telefonoObtenido = numeroIngresado.val();
 		botonContinuar.removeClass("disabled");
 };
-
 }
 /*-----------------------------------------------------*/
 /*api*/
@@ -44,21 +39,21 @@ function obtenerInformacion() {
 		phone: telefonoObtenido,
 		terms: terminos,
 	}).then(function (respuesta) {
+		/*console.log(respuesta)*/
 		 console.log(respuesta.data.code)
-		 obtenerInformacion(respuesta)
+		 almacenarInformacion(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
 };
 
-
- 
-
 function almacenarInformacion(respuesta){
 	localStorage.setItem("phone",telefonoObtenido);
 	localStorage.setItem("terms",terminos);
 	localStorage.setItem("code",respuesta.data.code);
+	mostrarCodigo(respuesta);
 }
+
 /*function obtenerInformacion(){
 	var telefonoLS = localStorage.getItem("phone");
     console.log(telefonoLS);
@@ -66,15 +61,15 @@ function almacenarInformacion(respuesta){
 	console.log(terminosLS);
 	var codigoLS = localStorage.getItem("code");
 	console.log(codigoLS);
-	
+	mostrarCodigo(respuesta);	
 }*/
 
 function mostrarCodigo(respuesta){
 	var codigoLS = localStorage.getItem("code");
 	console.log(codigoLS);
-	obtenerInformacion(respuesta);
-	alert("Tu código es:" + " " + codigoLS )
-}
+	/*obtenerInformacion(respuesta);*/
+	alert("Tu código es: " + codigoLS);
+};
 
 
 function imprimirNumero(){
@@ -83,12 +78,12 @@ function imprimirNumero(){
 	almacenTelImpreso.html(telefonoLS);
 }
 
-botonContinuar.click(obtenerInformacion,mostrarCodigo);
+botonContinuar.click(obtenerInformacion);
 
 /*
 ----------------------------------- validación de codigo
 */
-var inputEscribeCodigo = $("#entrada");
+/*var inputEscribeCodigo = $("#entrada");
 
 inputEscribeCodigo.keyup(validarCodigo);
 
@@ -100,5 +95,4 @@ function validarCodigo() {
 };
 }
 
-validarCodigo();
-
+validarCodigo();*/
