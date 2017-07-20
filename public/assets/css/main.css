@@ -19,4 +19,8 @@ div .carousel {
     width: 60%;
     margin-top: 40%; }
 
+#email {
+  width: 70px;
+  display: inline; }
+
 /*# sourceMappingURL=main.css.map */
