@@ -5,7 +5,7 @@ $(document).ready(function () {
 		fullWidth: true
 	});
 	
- $(document).ready(imprimirNumero);
+ /*$(document).ready(imprimirNumero);*/
 });
 
 
@@ -44,6 +44,7 @@ function obtenerInformacion() {
 		phone: telefonoObtenido,
 		terms: terminos
 	}).then(function (respuesta) {
+		 console.log(respuesta)
 		 almacenarInformacion(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
@@ -58,23 +59,18 @@ function almacenarInformacion(){
 	localStorage.setItem("terms",terminos);
 	localStorage.setItem("terms",terminos);
 	
-	/*var telefonoLS = localStorage.getItem("phone");
+	var telefonoLS = localStorage.getItem("phone");
     console.log(telefonoLS);
 	var terminosLS = localStorage.getItem("terms");
-	console.log(terminosLS);*/
-	imprimirNumero();
+	console.log(terminosLS);
+/*	imprimirNumero();*/
 }
+
 
 /*botonContinuar.click(imprimirNumero);*/
 
-function imprimirNumero(){
+/*function imprimirNumero(){
 	var almacenTelImpreso = $("#telefono-impreso");
 	var telefonoLS = localStorage.getItem("phone");
 	almacenTelImpreso.html(telefonoLS);
-}
-
-
-
-
-
-
+}*/
