@@ -13,8 +13,8 @@ $(document).ready(function () {
 var numeroIngresado = $('#entrada');
 var botonContinuar = $('#btn-continuar');
 var palomita = $('#test5');
-var telefonoObtenido = 0;
-var terminos = 0;
+var telefonoObtenido;
+var terminos;
 
 console.log(numeroIngresado)
 console.log(botonContinuar);
@@ -23,18 +23,14 @@ console.log(palomita);
 numeroIngresado.keyup(validarNumero);
 palomita.change(validarNumero);
 
-function validarNumero(e) {
-	e.preventDefault();
+function validarNumero() {
 	var longitud = numeroIngresado.val().length;
 	
 	if (longitud == 10 && palomita.is(":checked")) {
-		/*terminos = true;*/
+		terminos = true;
 		botonContinuar.removeClass("disabled");
+	
 		/*(":checked")   aun no se por que necesita los dos puntos :s :es como un selector o seudoclase*/
-	}
-	else{
-		terminos = false;
-		return terminos;
 	}
 };
 /*-----------------------------------------------------*/
