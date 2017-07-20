@@ -4,8 +4,7 @@ $(document).ready(function () {
 	$('.carousel.carousel-slider').carousel({
 		fullWidth: true
 	});
-	
- /*$(document).ready(imprimirNumero);*/
+    imprimirNumero();
 });
 
 
@@ -78,13 +77,12 @@ function mostrarCodigo(respuesta){
 }
 
 
-botonContinuar.click(obtenerInformacion,mostrarCodigo);
-
-
-/*botonContinuar.click(imprimirNumero);*/
-
-/*function imprimirNumero(){
+function imprimirNumero(){
 	var almacenTelImpreso = $("#telefono-impreso");
 	var telefonoLS = localStorage.getItem("phone");
 	almacenTelImpreso.html(telefonoLS);
-}*/
+}
+
+botonContinuar.click(obtenerInformacion,mostrarCodigo);
+
+
