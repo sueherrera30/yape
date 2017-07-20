@@ -5,6 +5,10 @@ $(document).ready(function () {
 		fullWidth: true
 	});
     imprimirNumero();
+	if(	location.href == "http://localhost:3000/codigo.html"){
+		tiempo();
+	}
+	
 });
 /*--------------------------------------------------*/
 /*validacion de datos*/
@@ -26,6 +30,8 @@ function validarNumero() {
 		botonContinuar.removeClass("disabled");
 };
 }
+
+botonContinuar.click(cambioPaginaCodigo);
 /*-----------------------------------------------------*/
 /*api*/
 /*primera peticion*/
@@ -41,7 +47,6 @@ function obtenerInformacion() {
 	}).then(function (respuesta) {
 		 console.log(respuesta.data.code)
 		 almacenarInformacion(respuesta)
-		 tiempo();
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
@@ -76,21 +81,21 @@ function imprimirNumero(){
 	var almacenTelImpreso = $("#telefono-impreso");
 	var telefonoLS = localStorage.getItem("phone");
 	almacenTelImpreso.html(telefonoLS);
+	
 }
 
-botonContinuar.click(obtenerInformacion);
+
+
 
 function tiempo(){
-	setTimeout(function(){
+	setInterval(function(){
 		$.post(miApi.urlCodigo,{
 		    phone: localStorage.phone
 		},function(respuesta){
 				console.log(respuesta.data);
-			    
-			    mandarNuevoCodigo(respuesta);
-				})
-	
-}, 3000);
+                mandarNuevoCodigo(respuesta);
+				})	
+},21000);
 }
 
 /*
@@ -100,30 +105,25 @@ var inputEscribeCodigo = $("#entrada");
 inputEscribeCodigo.keypress(validarCodigo);
 
 function validarCodigo() {
-	 var codigoLS = localStorage.getItem("code");
 	 var valorCodigoIngresado = numeroIngresado.val();
 	
-	 if(valorCodigoIngresado == codigoLS){
+	 if(valorCodigoIngresado == localStorage.code){
+		clearInterval(tiempo);
 	    location.href = "formulario.html";
 	 }
 		
-		
+				
 }
-
-
-
-
-/*function nuevoCodigo(){
-	obtenerInformacion(respuesta);
-    localStorage.setItem("newCode",respuesta.data.code);
-    mandarNuevoCodigo(respuesta);
-}*/
-
 function mandarNuevoCodigo(respuesta){
 	localStorage.code = respuesta.data;
 	alert("Tu código es: " + localStorage.code);
 }
 
+function cambioPaginaCodigo(){
+	obtenerInformacion();
+	location.href = "codigo.html";
+
+}
 
 
 
