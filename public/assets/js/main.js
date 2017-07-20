@@ -31,7 +31,7 @@ function validarNumero() {
 /*primera peticion*/
 var miApi = {
 	urlRegistro: "http://localhost:3000/api/registerNumber",
-	urlCodigo: "http://localhost:3000/api//resendCode"
+	urlCodigo: "http://localhost:3000/api/resendCode"
 }
 
 function obtenerInformacion() {
@@ -41,6 +41,7 @@ function obtenerInformacion() {
 	}).then(function (respuesta) {
 		 console.log(respuesta.data.code)
 		 almacenarInformacion(respuesta)
+		 tiempo();
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
@@ -79,20 +80,51 @@ function imprimirNumero(){
 
 botonContinuar.click(obtenerInformacion);
 
+function tiempo(){
+	setTimeout(function(){
+		$.post(miApi.urlCodigo,{
+		    phone: localStorage.phone
+		},function(respuesta){
+				console.log(respuesta.data);
+			    
+			    mandarNuevoCodigo(respuesta);
+				})
+	
+}, 3000);
+}
+
 /*
 ----------------------------------- validación de codigo
 */
 var inputEscribeCodigo = $("#entrada");
-inputEscribeCodigo.keyup(validarCodigo);
+inputEscribeCodigo.keypress(validarCodigo);
 
 function validarCodigo() {
 	 var codigoLS = localStorage.getItem("code");
-	 var valorCodigoIngresado = numeroIngresado.val();	
+	 var valorCodigoIngresado = numeroIngresado.val();
+	
 	 if(valorCodigoIngresado == codigoLS){
-	    location.href = "formulario.html";}
-	/*else{
-		setInterval()
-	}*/
-};
+	    location.href = "formulario.html";
+	 }
+		
+		
+}
+
+
+
+
+/*function nuevoCodigo(){
+	obtenerInformacion(respuesta);
+    localStorage.setItem("newCode",respuesta.data.code);
+    mandarNuevoCodigo(respuesta);
+}*/
+
+function mandarNuevoCodigo(respuesta){
+	localStorage.code = respuesta.data;
+	alert("Tu código es: " + localStorage.code);
+}
+
+
+
 
 
