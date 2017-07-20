@@ -39,7 +39,6 @@ function obtenerInformacion() {
 		phone: telefonoObtenido,
 		terms: terminos,
 	}).then(function (respuesta) {
-		/*console.log(respuesta)*/
 		 console.log(respuesta.data.code)
 		 almacenarInformacion(respuesta)
 	}).catch(function (error) {
@@ -52,6 +51,7 @@ function almacenarInformacion(respuesta){
 	localStorage.setItem("terms",terminos);
 	localStorage.setItem("code",respuesta.data.code);
 	mostrarCodigo(respuesta);
+	validarCodigo(respuesta);
 }
 
 /*function obtenerInformacion(){
@@ -67,7 +67,6 @@ function almacenarInformacion(respuesta){
 function mostrarCodigo(respuesta){
 	var codigoLS = localStorage.getItem("code");
 	console.log(codigoLS);
-	/*obtenerInformacion(respuesta);*/
 	alert("Tu código es: " + codigoLS);
 };
 
@@ -83,16 +82,14 @@ botonContinuar.click(obtenerInformacion);
 /*
 ----------------------------------- validación de codigo
 */
-/*var inputEscribeCodigo = $("#entrada");
-
+var inputEscribeCodigo = $("#entrada");
 inputEscribeCodigo.keyup(validarCodigo);
 
 function validarCodigo() {
 	 var codigoLS = localStorage.getItem("code");
 	 var valorCodigoIngresado = numeroIngresado.val();	
-	if (valorCodigoIngresado == codigoLS){
-	       console.log("por ahi vas");
+	 if(valorCodigoIngresado == codigoLS){
+	    console.log("por ahi vas");}
 };
-}
 
-validarCodigo();*/
+
