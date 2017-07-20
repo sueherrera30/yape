@@ -47,4 +47,27 @@ div .carousel {
     width: 8%;
     height: 8%; }
 
+.text-mov {
+  margin-top: 3%; }
+
+hr {
+  border-color: dimgrey; }
+
+.flecha-img-cont {
+  margin-top: 2%; }
+
+.imgCont-cactus {
+  height: 100%;
+  width: 100%; }
+  .imgCont-cactus--img {
+    height: 90%;
+    width: 90%; }
+
+.enviarRecibir-almacen {
+  height: 100%;
+  width: 100%; }
+  .enviarRecibir-almacen--img {
+    height: 30%;
+    width: 30%; }
+
 /*# sourceMappingURL=main.css.map */

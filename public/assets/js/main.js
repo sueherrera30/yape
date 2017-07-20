@@ -65,7 +65,7 @@ function almacenarInformacion(){
 	imprimirNumero();
 }
 
-botonContinuar.click(imprimirNumero);
+/*botonContinuar.click(imprimirNumero);*/
 
 function imprimirNumero(){
 	var almacenTelImpreso = $("#telefono-impreso");
