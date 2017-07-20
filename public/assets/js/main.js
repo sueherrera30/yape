@@ -44,14 +44,14 @@ function obtenerInformacion() {
 		phone: telefonoObtenido,
 		terms: terminos
 	}).then(function (respuesta) {
-		 console.log(respuesta)
+		 console.log(respuesta.data.code)
 		 almacenarInformacion(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
 };
 
-botonContinuar.click(obtenerInformacion);
+
  
 
 function almacenarInformacion(){
@@ -66,6 +66,7 @@ function almacenarInformacion(){
 /*	imprimirNumero();*/
 }
 
+botonContinuar.click(obtenerInformacion);
 
 /*botonContinuar.click(imprimirNumero);*/
 
