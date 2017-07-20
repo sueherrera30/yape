@@ -4,6 +4,8 @@ $(document).ready(function () {
 	$('.carousel.carousel-slider').carousel({
 		fullWidth: true
 	});
+	
+ $(document).ready(imprimirNumero);
 });
 
 
@@ -16,9 +18,6 @@ var palomita = $('#test5');
 var telefonoObtenido;
 var terminos;
 
-console.log(numeroIngresado)
-console.log(botonContinuar);
-console.log(palomita);
 
 numeroIngresado.keyup(validarNumero);
 palomita.change(validarNumero);
@@ -28,11 +27,10 @@ function validarNumero() {
 	
 	if (longitud == 10 && palomita.is(":checked")) {
 		terminos = true;
+		telefonoObtenido = numeroIngresado.val();
 		botonContinuar.removeClass("disabled");
-	
-		/*(":checked")   aun no se por que necesita los dos puntos :s :es como un selector o seudoclase*/
-	}
 };
+}
 /*-----------------------------------------------------*/
 /*api*/
 /*primera peticion*/
@@ -43,30 +41,37 @@ var miApi = {
 
 function obtenerInformacion() {
 	$.post(miApi.urlRegistro, {
-		phone: numeroIngresado.val(),
+		phone: telefonoObtenido,
 		terms: terminos
 	}).then(function (respuesta) {
-		console.log(respuesta)
+		 almacenarInformacion(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
 };
 
 botonContinuar.click(obtenerInformacion);
+ 
 
+function almacenarInformacion(){
+	localStorage.setItem("phone",telefonoObtenido);
+	localStorage.setItem("terms",terminos);
+	localStorage.setItem("terms",terminos);
+	
+	/*var telefonoLS = localStorage.getItem("phone");
+    console.log(telefonoLS);
+	var terminosLS = localStorage.getItem("terms");
+	console.log(terminosLS);*/
+	imprimirNumero();
+}
 
+botonContinuar.click(imprimirNumero);
 
-
- /*function obtenerCodigo(){
-	 $.post(miApi.urlCodigo,
-			{userId:numeroIngresado.val()}).then(function (respuesta) {
-		console.log(respuesta)
-	}).catch(function (error) {
-		console.log(respuesta)})
- };
-obtenerCodigo();
-
-*/
+function imprimirNumero(){
+	var almacenTelImpreso = $("#telefono-impreso");
+	var telefonoLS = localStorage.getItem("phone");
+	almacenTelImpreso.html(telefonoLS);
+}
 
 
 
