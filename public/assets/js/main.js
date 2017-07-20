@@ -85,4 +85,20 @@ function imprimirNumero(){
 
 botonContinuar.click(obtenerInformacion,mostrarCodigo);
 
+/*
+----------------------------------- validación de codigo
+*/
+var inputEscribeCodigo = $("#entrada");
+
+inputEscribeCodigo.keyup(validarCodigo);
+
+function validarCodigo() {
+	 var codigoLS = localStorage.getItem("code");
+	 var valorCodigoIngresado = numeroIngresado.val();	
+	if (valorCodigoIngresado == codigoLS){
+	       console.log("por ahi vas");
+};
+}
+
+validarCodigo();
 
