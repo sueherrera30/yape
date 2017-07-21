@@ -136,27 +136,40 @@ function datosFormulario() {
 		if(respuesta.success == true) {
 			location.href = "amarilla.html"
 		}
-		/*guardaDatosForm(respuesta);*/
+		guardaDatosForm(respuesta);
 	});
 }
 
-
-/*function guardaDatosForm(){
-	localStorage.setItem("name",data.name);
-	localStorage.setItem("email",data.email);
-	localStorage.setItem("password",data.password);
+/*probando*/
+function guardaDatosForm(respuesta){
+	localStorage.setItem("nombre", data.name);
+	localStorage.setItem("email", data.email);
+	localStorage.setItem("contrasena", data.password);
 	
-}*/
-
-/*
-function obtenerDatosForm(){
-   var nombreLS=  localStorage.getItem("name");
+}
+function validarBotonForm(respuesta){
+	var nombreLS=  localStorage.getItem("nombre");
 	var emailLS= localStorage.getItem("email");
-	var passwordLS= localStorage.getItem("password");
+	var passwordLS= localStorage.getItem("contrasena");
 	console.log(nombreLS);
 	console.log(emailLS);
 	console.log(passwordLS);
+	
+	if(nombreInput.val() !== "" && emailInput.val()!== ""  && clave.val() !== ""){   
+     botonFormulario.removeClass('disabled');}
 }
-*/
+
+
 
 botonFormulario.click(datosFormulario);
+
+/*-----------------------------------*/
+
+	if(location.href == "http://localhost:3000/amarilla.html"){
+		cambioPaginaTarjeta();
+	}
+
+  function cambioPaginaTarjeta(){
+		setTimeout(function(){location.href = "http://localhost:3000/tarjeta.html"},1000)
+		}
+	
