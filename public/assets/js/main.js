@@ -4,11 +4,11 @@ $(document).ready(function () {
 	$('.carousel.carousel-slider').carousel({
 		fullWidth: true
 	});
-    imprimirNumero();
-	if(	location.href == "http://localhost:3000/codigo.html"){
+	imprimirNumero();
+	if (location.href == "http://localhost:3000/codigo.html") {
 		tiempo();
 	}
-	
+
 });
 /*--------------------------------------------------*/
 /*validacion de datos*/
@@ -23,12 +23,12 @@ palomita.change(validarNumero);
 
 function validarNumero() {
 	var longitud = numeroIngresado.val().length;
-	
+
 	if (longitud == 10 && palomita.is(":checked")) {
 		terminos = true;
 		telefonoObtenido = numeroIngresado.val();
 		botonContinuar.removeClass("disabled");
-};
+	};
 }
 
 botonContinuar.click(cambioPaginaCodigo);
@@ -37,7 +37,8 @@ botonContinuar.click(cambioPaginaCodigo);
 /*primera peticion*/
 var miApi = {
 	urlRegistro: "http://localhost:3000/api/registerNumber",
-	urlCodigo: "http://localhost:3000/api/resendCode"
+	urlCodigo: "http://localhost:3000/api/resendCode",
+	urlUsuario: "http://localhost:3000/api/createUser",
 }
 
 function obtenerInformacion() {
@@ -45,57 +46,48 @@ function obtenerInformacion() {
 		phone: telefonoObtenido,
 		terms: terminos,
 	}).then(function (respuesta) {
-		 console.log(respuesta.data.code)
-		 almacenarInformacion(respuesta)
+		console.log(respuesta.data.code)
+		almacenarInformacion(respuesta)
+		datosFormulario(respuesta)
 	}).catch(function (error) {
 		console.log(respuesta)
 	})
 };
 
-function almacenarInformacion(respuesta){
-	localStorage.setItem("phone",telefonoObtenido);
-	localStorage.setItem("terms",terminos);
-	localStorage.setItem("code",respuesta.data.code);
+function almacenarInformacion(respuesta) {
+	localStorage.setItem("phone", telefonoObtenido);
+	localStorage.setItem("terms", terminos);
+	localStorage.setItem("code", respuesta.data.code);
 	mostrarCodigo(respuesta);
 	validarCodigo(respuesta);
 }
 
-/*function obtenerInformacion(){
-	var telefonoLS = localStorage.getItem("phone");
-    console.log(telefonoLS);
-	var terminosLS = localStorage.getItem("terms");
-	console.log(terminosLS);
-	var codigoLS = localStorage.getItem("code");
-	console.log(codigoLS);
-	mostrarCodigo(respuesta);	
-}*/
-
-function mostrarCodigo(respuesta){
+function mostrarCodigo(respuesta) {
 	var codigoLS = localStorage.getItem("code");
 	console.log(codigoLS);
 	alert("Tu código es: " + codigoLS);
 };
 
 
-function imprimirNumero(){
+function imprimirNumero() {
 	var almacenTelImpreso = $("#telefono-impreso");
 	var telefonoLS = localStorage.getItem("phone");
 	almacenTelImpreso.html(telefonoLS);
-	
+
 }
 
 
 
-
-function tiempo(){
-	setInterval(function(){
-		$.post(miApi.urlCodigo,{
-		    phone: localStorage.phone
-		},function(respuesta){
-				console.log(respuesta.data);
-                mandarNuevoCodigo(respuesta);
-				})	
-},21000);
+/*-------------------------------------------------*/
+function tiempo() {
+	setInterval(function () {
+		$.post(miApi.urlCodigo, {
+			phone: localStorage.phone
+		}, function (respuesta) {
+			console.log(respuesta.data);
+			mandarNuevoCodigo(respuesta);
+		})
+	}, 21000);
 }
 
 /*
@@ -105,26 +97,66 @@ var inputEscribeCodigo = $("#entrada");
 inputEscribeCodigo.keypress(validarCodigo);
 
 function validarCodigo() {
-	 var valorCodigoIngresado = numeroIngresado.val();
-	
-	 if(valorCodigoIngresado == localStorage.code){
+	var valorCodigoIngresado = numeroIngresado.val();
+
+	if (valorCodigoIngresado == localStorage.code) {
 		clearInterval(tiempo);
-	    location.href = "formulario.html";
-	 }
-		
-				
+		location.href = "formulario.html";
+	}
+
+
 }
-function mandarNuevoCodigo(respuesta){
+
+function mandarNuevoCodigo(respuesta) {
 	localStorage.code = respuesta.data;
 	alert("Tu código es: " + localStorage.code);
 }
 
-function cambioPaginaCodigo(){
+function cambioPaginaCodigo() {
 	obtenerInformacion();
 	location.href = "codigo.html";
 
 }
 
 
+/*-------------------------------------sección de formulario*/
+var nombreInput = $("#nombre");
+var emailInput = $("#email");
+var claveInput = $("#clave");
+var botonFormulario = $("#btn-formulario");
+
+function datosFormulario() {
+	$.post("http://localhost:3000/api/createUser", {
+		phone: localStorage.phone,
+		name: nombreInput.val(),
+		email: emailInput.val(),
+		password: claveInput.val()
+	}, function (respuesta) {
+		console.log(respuesta);
+		if(respuesta.success == true) {
+			location.href = "amarilla.html"
+		}
+		/*guardaDatosForm(respuesta);*/
+	});
+}
 
 
+/*function guardaDatosForm(){
+	localStorage.setItem("name",data.name);
+	localStorage.setItem("email",data.email);
+	localStorage.setItem("password",data.password);
+	
+}*/
+
+/*
+function obtenerDatosForm(){
+   var nombreLS=  localStorage.getItem("name");
+	var emailLS= localStorage.getItem("email");
+	var passwordLS= localStorage.getItem("password");
+	console.log(nombreLS);
+	console.log(emailLS);
+	console.log(passwordLS);
+}
+*/
+
+botonFormulario.click(datosFormulario);
