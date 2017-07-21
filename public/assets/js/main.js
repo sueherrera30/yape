@@ -169,7 +169,7 @@ botonFormulario.click(datosFormulario);
 		cambioPaginaTarjeta();
 	}
 
-  function cambioPaginaTarjeta(){
+  function cambioPaginaTarjeta (){
 		setTimeout(function(){location.href = "http://localhost:3000/tarjeta.html"},1000)
 		}
 	
