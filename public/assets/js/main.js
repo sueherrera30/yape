@@ -39,6 +39,7 @@ var miApi = {
 	urlRegistro: "http://localhost:3000/api/registerNumber",
 	urlCodigo: "http://localhost:3000/api/resendCode",
 	urlUsuario: "http://localhost:3000/api/createUser",
+	urlTarjeta: "http://localhost:3000/api/registerCard"
 }
 
 function obtenerInformacion() {
@@ -174,6 +175,21 @@ botonFormulario.click(datosFormulario);
 		setTimeout(function(){location.href = "http://localhost:3000/tarjeta.html"},1000)
 		}
 
-/*----------------------------------*/
+/*----------------------------------pedimos info de tarjeta*/
+var agno = $("#agno");
+var mes= $("#mes");
+var cardNumber= $("#cardNumber");
+    
+function datosFormulario() {
+	$.post(miApi.urlTarjeta, {
+		userId: localStorage.phone,
+		cardNumber: cardNumber.val(),
+		cardMonth: mes.val(),
+		cardYear:agno.val(),
+	}, function (respuesta) {
+		console.log(respuesta);
+		}
+	
+)};
 
 	
