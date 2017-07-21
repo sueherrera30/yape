@@ -133,15 +133,16 @@ function datosFormulario() {
 		password: claveInput.val()
 	}, function (respuesta) {
 		console.log(respuesta);
+		alert("se muestra objeto en consola")
 		if(respuesta.success == true) {
 			location.href = "amarilla.html"
 		}
-		guardaDatosForm(respuesta);
+		/*guardaDatosForm(respuesta);*/
 	});
 }
 
 /*probando*/
-function guardaDatosForm(respuesta){
+/*function guardaDatosForm(respuesta){
 	localStorage.setItem("nombre", data.name);
 	localStorage.setItem("email", data.email);
 	localStorage.setItem("contrasena", data.password);
@@ -157,7 +158,7 @@ function validarBotonForm(respuesta){
 	
 	if(nombreInput.val() !== "" && emailInput.val()!== ""  && clave.val() !== ""){   
      botonFormulario.removeClass('disabled');}
-}
+}*/
 
 
 
@@ -172,4 +173,7 @@ botonFormulario.click(datosFormulario);
   function cambioPaginaTarjeta (){
 		setTimeout(function(){location.href = "http://localhost:3000/tarjeta.html"},1000)
 		}
+
+/*----------------------------------*/
+
 	
